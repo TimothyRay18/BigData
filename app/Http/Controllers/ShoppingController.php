@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\ModelBelanja;
-use App\Models\ModelDetil;
+use App\Models\DaftarBelanja;
+use App\Models\DaftarBelanjaDetil;
 
 class ShoppingController extends Controller
 {
@@ -16,8 +16,8 @@ class ShoppingController extends Controller
      */
     public function index()
     {
-        $daftarbelanja = ModelBelanja::all();
-        $daftarbelanjadetil = ModelDetil::all();
+        $daftarbelanja = DaftarBelanja::all();
+        $daftarbelanjadetil = DaftarBelanjaDetil::all();
         return view('shoppinglist.index',['daftarbelanja'=>$daftarbelanja,'daftarbelanjadetil'=>$daftarbelanjadetil]);
     }
 
@@ -44,7 +44,7 @@ class ShoppingController extends Controller
             'judul' => 'required'
         ]);
 
-        $daftar = new ModelBelanja;
+        $daftar = new DaftarBelanja;
         $daftar->tanggal = $request->dateFrom;
         $daftar->judul = $request->judul;
         $daftar->save();
@@ -53,7 +53,7 @@ class ShoppingController extends Controller
 
         $i=0;
         foreach($request->nama as $nama){
-            $detail = new ModelDetil;
+            $detail = new DaftarBelanjaDetil;
             $detail->daftarbelanja_id = $daftar_id;
             $detail->nourut = $request->id[$i];
             $detail->namabarang = $request->nama[$i];
@@ -75,8 +75,8 @@ class ShoppingController extends Controller
      */
     public function show($id)
     {
-        $daftarbelanja = ModelBelanja::all();
-        $daftarbelanjadetil = ModelDetil::where('daftarbelanja_id',$id)->get();
+        $daftarbelanja = DaftarBelanja::all();
+        $daftarbelanjadetil = DaftarBelanjaDetil::where('daftarbelanja_id',$id)->get();
         return view('shoppinglist.index',['daftarbelanja'=>$daftarbelanja,'daftarbelanjadetil'=>$daftarbelanjadetil]);
     }
 
@@ -86,9 +86,9 @@ class ShoppingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModelBelanja $daftarbelanja)
+    public function edit(DaftarBelanja $daftarbelanja)
     {   
-        $daftarbelanjadetil = ModelDetil::where('daftarbelanja_id',$daftarbelanja->id)->get();
+        $daftarbelanjadetil = DaftarBelanjaDetil::where('daftarbelanja_id',$daftarbelanja->id)->get();
         return view('shoppinglist.edit', compact('daftarbelanja','daftarbelanjadetil'));
     }
 
@@ -99,7 +99,7 @@ class ShoppingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ModelBelanja $daftarbelanja)
+    public function update(Request $request, DaftarBelanja $daftarbelanja)
     {
         // return $request;
         $daftarbelanja->tanggal = $request->dateFrom;
@@ -109,11 +109,11 @@ class ShoppingController extends Controller
         $daftar_id = $daftarbelanja->id;
 
         $i=0;
-        // $detail = ModelDetil::find($daftar_id);
+        // $detail = DaftarBelanjaDetil::find($daftar_id);
         
         foreach($request->nama as $nama){
-            $detail = new ModelDetil;
-            $detail = ModelDetil::where('daftarbelanja_id',$daftar_id)->where('nourut',$request->id[$i])->update(['namabarang'=>$request->nama[$i],'jml'=>$request->banyak[$i],'satuan'=>$request->satuan[$i],'memo'=>$request->memo[$i]]);
+            $detail = new DaftarBelanjaDetil;
+            $detail = DaftarBelanjaDetil::where('daftarbelanja_id',$daftar_id)->where('nourut',$request->id[$i])->update(['namabarang'=>$request->nama[$i],'jml'=>$request->banyak[$i],'satuan'=>$request->satuan[$i],'memo'=>$request->memo[$i]]);
             $i=$i+1;
         }
         return redirect('/shopping')->with('status', 'Daftar belanja berhasil diubah');
@@ -125,10 +125,10 @@ class ShoppingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ModelBelanja $daftarbelanja)
+    public function destroy(DaftarBelanja $daftarbelanja)
     {
-        ModelBelanja::destroy($daftarbelanja->id);
-        ModelDetil::where('daftarbelanja_id',$daftarbelanja->id)->delete();
+        DaftarBelanja::destroy($daftarbelanja->id);
+        DaftarBelanjaDetil::where('daftarbelanja_id',$daftarbelanja->id)->delete();
         return redirect('/shopping')->with('status', 'Daftar belanja berhasil dihapus');
     }
 }
