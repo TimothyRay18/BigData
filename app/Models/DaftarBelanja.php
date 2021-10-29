@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class DaftarBelanja extends Eloquent
+class DaftarBelanja extends Model
 {
-    protected $connection = 'mongodb';
-    protected $collection = 'DaftarBelanja';
-    
-    // protected $fillable = [
-    //     'carcompany', 'model','price'
-    // ];
+    use HasFactory;
 }
