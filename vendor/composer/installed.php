@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'v8.5.11',
-    'version' => '8.5.11.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '4e8f67f74af8e0575f7ced468d017ec4c55ad020',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -422,6 +422,24 @@
         0 => 'v8.29.0',
       ),
     ),
+    'jean85/pretty-package-versions' => 
+    array (
+      'pretty_version' => '2.0.5',
+      'version' => '2.0.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ae547e455a3d8babd07b96966b17d7fd21d9c6af',
+    ),
+    'jenssegers/mongodb' => 
+    array (
+      'pretty_version' => '3.8.4',
+      'version' => '3.8.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6aa6ad12b3b52eeab1d090f282c14123ffad1dc9',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -440,12 +458,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'v8.5.11',
-      'version' => '8.5.11.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '4e8f67f74af8e0575f7ced468d017ec4c55ad020',
     ),
     'laravel/sail' => 
     array (
@@ -500,6 +518,15 @@
       array (
       ),
       'reference' => 'd1339f64479af1bee0e82a0413813fe5345a54ea',
+    ),
+    'mongodb/mongodb' => 
+    array (
+      'pretty_version' => '1.9.0',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4afe9254e87252879bfbb625858e78fbe072daa0',
     ),
     'monolog/monolog' => 
     array (
@@ -760,8 +787,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

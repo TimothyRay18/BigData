@@ -13,15 +13,9 @@ class CreateDaftarBelanjaDetilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('daftar_belanja_detils', function (Blueprint $table) {
-            $table->id();
-            $table->string('daftarbelanja_id');
-            $table->bigInteger('nourut');
-            $table->string('namabarang');
-            $table->bigInteger('jml');
-            $table->string('satuan');
-            $table->string('memo');
-            $table->timestamps();
+        Schema::create('daftar_belanja_detils', function ($collection) {
+            $collection->index('slug');
+            $collection->unique('slug');
         });
     }
 
